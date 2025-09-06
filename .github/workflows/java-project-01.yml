@@ -111,7 +111,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: shailchauhan/app:latest
+          tags: |
+            shailchauhan/app:latest
+            shailchauhan/app:${{ github.sha }}
           file: ./Dockerfile
 
         
