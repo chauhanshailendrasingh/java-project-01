@@ -35,7 +35,7 @@ jobs:
        sudo apt-get install trivy -y
 
     - name: trivy scan
-      run: trivy fs --formate table -o trivy-reports.html .
+      run: trivy fs --format table -o trivy-reports.html .
 
     - name: gitleaks scan
       run: sudo apt-get install gitleaks -y
