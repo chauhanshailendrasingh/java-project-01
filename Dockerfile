@@ -1,17 +1,13 @@
-# Use slim Java 17 image
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-alpine
+    
+EXPOSE 8080
 
-# Create a non-root user
-RUN useradd -ms /bin/bash appuser
+RUN ls 
 
-# Set working directory
-WORKDIR /app
+ENV APP_HOME /usr/src/app
 
-# Copy JAR into container
-COPY target/java-cicd-app-1.0-SNAPSHOT.jar app.jar
+COPY app/*.jar $APP_HOME/app.jar
 
-# Switch to non-root user
-USER appuser
+WORKDIR $APP_HOME
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
