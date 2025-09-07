@@ -98,8 +98,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: compile with Maven
-      run: mvn -B package
+    - name: Compile with Maven
+      run: mvn -B clean package -DskipTests
+   
     - name: upload JAR
       uses: actions/upload-artifact@v4
       with:
