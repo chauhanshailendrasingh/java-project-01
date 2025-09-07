@@ -83,7 +83,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: compile with Maven
+    - name: test with Maven
       run: mvn -B test
       
   build:
@@ -98,7 +98,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Compile with Maven
+    - name: Package with Maven
       run: mvn -B clean package -DskipTests
    
     - name: upload JAR
