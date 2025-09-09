@@ -25,16 +25,15 @@ jobs:
     steps:
     - name: git checkout
       uses: actions/checkout@v4
-    - name: trivy installation
-      run: |
-       sudo apt-get install wget apt-transport-https gnupg lsb-release -y
-       wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-       echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-       sudo apt-get update -y
-       sudo apt-get install trivy -y
-
-    - name: trivy scan
-      run: trivy fs --format table -o trivy-reports.html .
+    - name: Scan source code for vulnerabilities
+      uses: aquasecurity/trivy-action@master
+      with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
     - name: gitleaks scan
       run: sudo apt-get install gitleaks -y
