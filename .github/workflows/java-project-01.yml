@@ -144,6 +144,9 @@ jobs:
             shailchauhan/app:${{ github.sha }}
           file: ./Dockerfile
 
+
+          
+
         
    
   
