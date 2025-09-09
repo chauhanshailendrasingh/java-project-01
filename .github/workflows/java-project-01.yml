@@ -34,11 +34,11 @@ jobs:
           exit-code: '1'
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-
-    - name: gitleaks scan
-      run: sudo apt-get install gitleaks -y
-    - name: gitleaks scan
-      run: gitleaks detect source . -r gitleaks-reports.json -f json
+          
+    - name: Run Gitleaks
+      uses: gitleaks/gitleaks-action@v2
+      with:
+        args: detect --source . --report-path gitleaks-report.json --exit-code 1
 
 
   sonarqube:
